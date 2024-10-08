@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import {
     criarProduto,
+    getProdutos
 } from "../services/product-service";
 
 export const create = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -19,3 +20,12 @@ export const create = async (req: Request, res: Response, next: NextFunction): P
         next(error);
     }
 };
+
+export const get = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+    try {
+        const produtos = await getProdutos()
+        res.status(201).json(produtos)
+    } catch (error: any) {
+        next(error);
+    }
+}

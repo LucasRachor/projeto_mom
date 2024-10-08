@@ -24,6 +24,10 @@ export const criarProduto = async (data: Prisma.ProdutosCreateInput) => {
             qty_em_estoque: data.qty_em_estoque
         },
     });
-
     return produto;
+}
+
+export const getProdutos = async() => {
+    const allprodutos = await prisma.produtos.findMany({})
+    return allprodutos
 }
