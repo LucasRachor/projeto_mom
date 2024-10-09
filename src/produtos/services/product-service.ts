@@ -21,6 +21,7 @@ export const criarProduto = async (data: Prisma.ProdutosCreateInput) => {
             descricao_produto: data.descricao_produto,
             nome_produto: data.nome_produto,
             fornecedor: data.fornecedor,
+            preco_unitario: data.preco_unitario,
             qty_em_estoque: data.qty_em_estoque
         },
     });

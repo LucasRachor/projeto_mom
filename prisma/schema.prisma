@@ -28,6 +28,7 @@ model Produtos {
   nome_produto      String             @unique
   fornecedor        String
   qty_em_estoque    Int
+  preco_unitario    Float
   pedidos_Produtos  Pedidos_Produtos[]
 }
 
@@ -43,9 +44,10 @@ model Pedidos {
 }
 
 model Pedidos_Produtos {
-  id        String   @id @default(uuid())
-  pedidos   Pedidos  @relation(fields: [pedidoId], references: [id])
-  pedidoId  String
-  Produtos  Produtos @relation(fields: [produtoId], references: [id])
-  produtoId String
+  id          String   @id @default(uuid())
+  qtd_produto Int
+  pedidos     Pedidos  @relation(fields: [pedidoId], references: [id])
+  pedidoId    String
+  produtos    Produtos @relation(fields: [produtoId], references: [id])
+  produtoId   String
 }

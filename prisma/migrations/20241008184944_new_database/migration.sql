@@ -20,7 +20,8 @@ CREATE TABLE "Produtos" (
     "descricao_produto" TEXT NOT NULL,
     "nome_produto" TEXT NOT NULL,
     "fornecedor" TEXT NOT NULL,
-    "qty_em_estoque" INTEGER NOT NULL
+    "qty_em_estoque" INTEGER NOT NULL,
+    "preco_unitario" REAL NOT NULL
 );
 
 -- CreateTable
@@ -37,6 +38,7 @@ CREATE TABLE "Pedidos" (
 -- CreateTable
 CREATE TABLE "Pedidos_Produtos" (
     "id" TEXT NOT NULL PRIMARY KEY,
+    "qtd_produto" INTEGER NOT NULL,
     "pedidoId" TEXT NOT NULL,
     "produtoId" TEXT NOT NULL,
     CONSTRAINT "Pedidos_Produtos_pedidoId_fkey" FOREIGN KEY ("pedidoId") REFERENCES "Pedidos" ("id") ON DELETE RESTRICT ON UPDATE CASCADE,

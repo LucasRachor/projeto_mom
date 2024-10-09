@@ -10,6 +10,7 @@ export const create = async (req: Request, res: Response, next: NextFunction): P
             descricao_produto: req.body.descricao_produto,
             nome_produto: req.body.nome_produto,
             fornecedor: req.body.fornecedor,
+            preco_unitario: req.body.preco_unitario,
             qty_em_estoque: req.body.qty_em_estoque
         });
         res.status(201).json({
