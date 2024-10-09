@@ -33,7 +33,7 @@ model Produtos {
 }
 
 model Pedidos {
-  id               String             @id @default(uuid())
+  id               String             @unique @id @default(uuid())
   data_pedido      DateTime           @default(now())
   preco_total      Float
   metodo_pagamento String

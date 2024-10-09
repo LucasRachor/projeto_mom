@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -42,6 +42,7 @@ export const criarPedidoProduto = async (dadosPedido) => {
   });
 };
 
+// Retornar todos os pedidos do banco
 export const getallPedidosProdutos = async () => {
     const resultados = await prisma.pedidos.findMany({
         include: {
@@ -60,6 +61,7 @@ export const getallPedidosProdutos = async () => {
     return resultados;
 }
 
+// Formatação da resposta do banco
 export const formatarPedidosComProdutos = (pedidos: any[]) => {
     return pedidos.map(pedido => ({
         id_pedido: pedido.id,
@@ -76,3 +78,24 @@ export const formatarPedidosComProdutos = (pedidos: any[]) => {
         })) : []
     }));
 };
+
+export const getPedidosById = async (pedidoId: any) => {
+  const getById = await prisma.pedidos.findUnique({
+    where: {
+      id: pedidoId
+    },
+    include: {
+            pedidos_produtos: {
+                include: {
+                    produtos: {
+                        select: {
+                            nome_produto: true,
+                            preco_unitario: true
+                        }
+                    }
+                }
+            }
+        }
+  })
+  return getById;
+}
